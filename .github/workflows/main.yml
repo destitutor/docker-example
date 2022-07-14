@@ -22,8 +22,6 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: clean build
-        
-      - run: ls ./build/libs/
       
       # 먼저, 빌더 드라이버나 플랫폼 등을 세팅한다.
       # buildx를 통해서 도커 이미지를 빌드하고 푸시하려면 이 과정이 선행되어야 한다.
@@ -41,5 +39,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: devspacehub/devspace:latest
